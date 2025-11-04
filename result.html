@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prediction Result</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: url('{{ url_for('static', filename='bg.PNG') }}') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.container {
+    background: rgba(255,255,255,0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px #444;
+    width: 400px;
+    text-align: center;
+}
+button, a {
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+button { background: #28a745; }
+button:hover { background: #218838; }
+a { background: #007BFF; }
+a:hover { background: #0056b3; }
+</style>
+</head>
+<body>
+<div class="container">
+<h2>Prediction Result</h2>
+<p><b>Outcome:</b> {{ outcome }}</p>
+
+{% if show_type %}
+<p>Do you want to check which type of diabetes you have?</p>
+<form method="POST" action="/check_type">
+    <input type="hidden" name="input_data" value="{{ input_data }}">
+    <button type="submit">Yes, Show Type</button>
+</form>
+{% endif %}
+
+<a href="{{ url_for('form') }}">Go Back</a>
+</div>
+</body>
+</html>
